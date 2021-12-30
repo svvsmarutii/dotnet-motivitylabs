@@ -1,0 +1,4 @@
+2021-12-29T12:57:06.7105584+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-12-29T12:57:06.8282175+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-12-29T12:57:06.8303755+05:30  [INF] Content root path: "C:\Users\Niranjan\source\repos\EmployeeProject" (b5d60022)
+2021-12-29T12:58:42.7180190+05:30 800000ab-0001-fc00-b63f-84710c7967bb [WRN] Invalid password for user. (6d284782)

@@ -1,0 +1,5 @@
+2021-12-17T10:01:33.9254959+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-12-17T10:01:33.9365126+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-12-17T10:01:33.9400157+05:30  [INF] Content root path: "C:\Users\Niranjan\source\repos\EmployeeProject" (b5d60022)
+2021-12-17T10:02:58.8385099+05:30 800000df-0001-fb00-b63f-84710c7967bb [INF] AddressController  GetAddress Method Started (4721d2bb)
+2021-12-17T10:02:59.0808045+05:30 800000df-0001-fb00-b63f-84710c7967bb [INF] AddressController  GetAddress Method Ended (a2fc7d5c)
