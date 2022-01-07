@@ -1,4 +1,5 @@
 FROM bitnami/dotnet-sdk
+  RUN rm -rf ./*
   COPY ./* ./
   RUN ls -l 
   RUN dotnet restore EmployeeProject.csproj && dotnet clean EmployeeProject.csproj && dotnet build EmployeeProject.csproj --configuration Release  
