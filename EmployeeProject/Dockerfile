@@ -1,3 +1,4 @@
+RUN docker system prune -s
 FROM bitnami/dotnet-sdk
   COPY ./* ./
   RUN ls -l 
