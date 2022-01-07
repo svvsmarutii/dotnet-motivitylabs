@@ -5,7 +5,7 @@ FROM bitnami/dotnet-sdk
   #RUN dotnet restore EmployeeProject.csproj --no-cache && dotnet build EmployeeProject.csproj --configuration Release  
   #RUN dotnet restore EmployeeProject.csproj
   COPY ./* ./
-  RUN rm -rf obj bin && rm -rf /app/Debug/netcoreapp3.1/EmployeeProject.AssemblyInfo.cs && ls -l  
+  RUN rm -rf obj bin && rm -f /app/Debug/netcoreapp3.1/EmployeeProject.AssemblyInfo.cs /app/Debug/netcoreapp3.1/EmployeeProject.MvcApplicationPartsAssemblyInfo.cs && ls -l  
   RUN find /app -name *AssemblyInfo.cs
   RUN dotnet build EmployeeProject.csproj --configuration Release
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
