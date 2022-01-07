@@ -10,10 +10,10 @@ COPY ["EmployeeProject.csproj", "EmployeeProject/"]
 RUN dotnet restore "EmployeeProject/EmployeeProject.csproj" -r linux-musl-x64
 COPY  . "EmployeeProject/"
 WORKDIR "/src/EmployeeProject"
-RUN dotnet build "EmployeeProject.csproj" -c Release -r linux-musl-x64 -o /app --no-restore
+RUN dotnet build "EmployeeProject.csproj" -c Release -o /app --no-restore
 
 FROM build AS publish
-RUN dotnet publish "EmployeeProject.csproj" -c Release -r linux-musl-x64 -o /app --no-restore
+RUN dotnet publish "EmployeeProject.csproj" -c Release -o /app --no-restore
 
 FROM base AS final
 WORKDIR /app
