@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
-  COPY EmployeeProject ./
+  COPY ./* ./
   RUN ls -l 
   RUN dotnet restore EmployeeProject/EmployeeProject.csproj
   COPY bin/Release/netcoreapp3.1/ App/
