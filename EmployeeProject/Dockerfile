@@ -1,4 +1,4 @@
-FROM bitnami/dotnet-sdk
+FROM bitnami/dotnet-sdk:5
   RUN pwd && ls -l && rm -rf ./* && ls -l
   #COPY ./EmployeeProject.csproj ./
   RUN ls -l 
