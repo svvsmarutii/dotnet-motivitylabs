@@ -1,15 +1,23 @@
-FROM bitnami/dotnet-sdk:5
-  RUN pwd && ls -l && rm -rf ./* && ls -l
-  #COPY ./EmployeeProject.csproj ./
-  RUN ls -l 
-  #RUN dotnet restore EmployeeProject.csproj --no-cache && dotnet build EmployeeProject.csproj --configuration Release  
-  #RUN dotnet restore EmployeeProject.csproj
-  COPY ./* ./
-  RUN rm -rf obj bin && rm -f /app/Debug/netcoreapp3.1/EmployeeProject.AssemblyInfo.cs /app/Debug/netcoreapp3.1/EmployeeProject.MvcApplicationPartsAssemblyInfo.cs /app/Debug/netcoreapp3.1/.NETCoreApp,Version=v3.1.AssemblyAttributes.cs && ls -l  
-  RUN find /app -name *AssemblyInfo.cs 
-  RUN find /app -name *AssemblyAttributes.cs
-  RUN dotnet build EmployeeProject.csproj --configuration Release
-FROM mcr.microsoft.com/dotnet/aspnet:5.0
-  #COPY bin/Release/netcoreapp3.1/ App/
-  WORKDIR /App
-  ENTRYPOINT ["dotnet", "EmployeeProject.dll"]
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
+WORKDIR /src
+COPY ["EmployeeProject.csproj", "EmployeeProject/"]
+
+RUN dotnet restore "EmployeeProject/EmployeeProject.csproj" -r linux-musl-x64
+COPY  . "EmployeeProject/"
+WORKDIR "/src/EmployeeProject"
+RUN dotnet build "EmployeeProject.csproj" -c Release -r linux-musl-x64 -o /app --no-restore
+
+FROM build AS publish
+RUN dotnet publish "EmployeeProject.csproj" -c Release -r linux-musl-x64 -o /app --no-restore
+
+FROM base AS final
+WORKDIR /app
+
+COPY --from=publish /app .
+
+ENTRYPOINT ["dotnet", "EmployeeProject.dll"]
