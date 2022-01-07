@@ -1,4 +1,3 @@
-RUN rm -rf ./*
 FROM bitnami/dotnet-sdk
   RUN pwd && ls -l && rm -rf ./* && ls -l
   COPY ./* ./
