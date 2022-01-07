@@ -10,7 +10,7 @@ COPY ["EmployeeProject.csproj", "EmployeeProject/"]
 RUN dotnet restore "EmployeeProject/EmployeeProject.csproj"
 COPY  . "EmployeeProject/"
 WORKDIR "/src/EmployeeProject"
-RUN dotnet build "EmployeeProject.csproj" -c Release -o /app --no-restore
+RUN dotnet build "EmployeeProject.csproj" -c Release -o /app
 
 FROM build AS publish
 RUN dotnet publish "EmployeeProject.csproj" -c Release -o /app --no-restore
