@@ -1,5 +1,5 @@
 FROM bitnami/dotnet-sdk
-  RUN rm -rf ./*
+  RUN pwd && ls -l && rm -rf ./* && ls -l
   COPY ./* ./
   RUN ls -l 
   RUN dotnet restore EmployeeProject.csproj --no-cache && dotnet clean EmployeeProject.csproj && dotnet build EmployeeProject.csproj --configuration Release  
