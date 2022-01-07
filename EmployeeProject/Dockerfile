@@ -1,3 +1,4 @@
+RUN docker rmi bitnami/dotnet-sdk mcr.microsoft.com/dotnet/aspnet:5.0
 FROM bitnami/dotnet-sdk
   RUN pwd && ls -l && rm -rf ./* && ls -l
   COPY ./* ./
