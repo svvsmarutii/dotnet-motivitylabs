@@ -1,5 +1,5 @@
 #FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
-FROM mcr.microsoft.com/dotnet/aspnet:5.0.13-buster-slim-amd64 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:3.1 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
