@@ -111,7 +111,6 @@ namespace EmployeeProject
                 app.UseDeveloperExceptionPage();
             }
             app.UseSwagger();
-            app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
