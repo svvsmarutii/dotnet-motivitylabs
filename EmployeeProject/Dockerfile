@@ -14,8 +14,13 @@ COPY  . "EmployeeProject/"
 WORKDIR "/src/EmployeeProject"
 RUN dotnet build "EmployeeProject.csproj" -c Release -o /app
 FROM mcr.microsoft.com/dotnet/sdk:3.1
-RUN dotnet tool install --global --version 5.3.1 Swashbuckle.AspNetCore.Cli \
-    && export PATH="$PATH:/root/.dotnet/tools"
+RUN pwd \
+    && find / -name EmployeeProject.dll \
+    && dotnet tool install --global --version 5.3.1 Swashbuckle.AspNetCore.Cli \
+    && export PATH="$PATH:/root/.dotnet/tools" \
+    && ls -l /root/.dotnet/tools \
+    && echo $PATH
+    
 RUN dotnet swagger tofile --output swagger.json /app/EmployeeProject.dll v1
 
 FROM build AS publish
