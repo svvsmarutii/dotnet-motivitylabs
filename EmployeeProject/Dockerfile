@@ -5,7 +5,8 @@ EXPOSE 80
 EXPOSE 443
 EXPOSE 40386
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
+#FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
+FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
 COPY ["EmployeeProject.csproj", "EmployeeProject/"]
 
@@ -13,7 +14,7 @@ RUN dotnet restore "EmployeeProject/EmployeeProject.csproj"
 COPY  . "EmployeeProject/"
 WORKDIR "/src/EmployeeProject"
 RUN dotnet build "EmployeeProject.csproj" -c Release -o /app
-FROM mcr.microsoft.com/dotnet/sdk:3.1
+
 RUN pwd \
     && find / -name EmployeeProject.dll \
     && dotnet tool install --global --version 5.3.1 Swashbuckle.AspNetCore.Cli \
