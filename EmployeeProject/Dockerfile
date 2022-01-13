@@ -23,7 +23,7 @@ RUN pwd \
     && chmod +x /root/.dotnet/tools/swagger \
     && echo $PATH
     
-RUN dotnet tool run swagger tofile --output swagger.json bin/Debug/netcoreapp3.1/EmployeeProject.dll v1
+RUN dotnet tool run dotnet-swagger tofile --output swagger.json bin/Debug/netcoreapp3.1/EmployeeProject.dll v1
 
 FROM build AS publish
 RUN dotnet publish "EmployeeProject.csproj" -c Release -o /app --no-restore
