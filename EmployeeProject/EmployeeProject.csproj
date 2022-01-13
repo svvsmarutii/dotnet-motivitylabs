@@ -18,10 +18,5 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
   </ItemGroup>
   
-<!--   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet tool restore" />
-    <Exec Command="dotnet swagger tofile --output swagger.json EmployeeProject.dll v1 " />
-  </Target> -->
-
-
+  
 </Project>
