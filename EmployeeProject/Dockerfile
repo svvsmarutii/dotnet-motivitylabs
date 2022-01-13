@@ -17,8 +17,8 @@ RUN dotnet build "EmployeeProject.csproj" -c Release -o /app
 RUN dotnet new tool-manifest
 RUN pwd \
     && find / -name dotnet-tools.json \
-    && cat /src/EmployeeProject/.config/dotnet-tools.json \
     && dotnet tool install --global --version 6.2.2 Swashbuckle.AspNetCore.Cli \
+    && cat /src/EmployeeProject/.config/dotnet-tools.json \
     && export PATH="$PATH:/root/.dotnet/tools" \
     && ls -l /root/.dotnet/tools \
     && chmod +x /root/.dotnet/tools/swagger \
