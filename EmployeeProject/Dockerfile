@@ -22,7 +22,7 @@ RUN pwd \
     && ls -l /root/.dotnet/tools \
     && chmod +x /root/.dotnet/tools/swagger \
     && echo $PATH \
-    && dotnet swagger --help
+    && swagger --help
     
 RUN dotnet swagger tofile --output swagger.json /app/EmployeeProject.dll v1
 
