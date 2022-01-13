@@ -18,11 +18,7 @@ RUN dotnet new tool-manifest
 RUN pwd \
     && dotnet tool install --local --version 6.2.2 Swashbuckle.AspNetCore.Cli \
     && find / -name dotnet-tools.json \
-    && cat /src/EmployeeProject/.config/dotnet-tools.json \
-    && export PATH="$PATH:/root/.dotnet/tools" \
-    && ls -l /root/.dotnet/tools \
-    && chmod +x /root/.dotnet/tools/swagger \
-    && echo $PATH
+    && cat /src/EmployeeProject/.config/dotnet-tools.json
     
 RUN dotnet tool run swagger tofile --output swagger.json bin/Debug/netcoreapp3.1/EmployeeProject.dll v1
 
