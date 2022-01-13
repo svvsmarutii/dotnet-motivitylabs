@@ -24,7 +24,7 @@ RUN pwd \
     && echo $PATH \
     && swagger --help
     
-RUN dotnet swagger tofile --output swagger.json /app/EmployeeProject.dll v1
+RUN swagger tofile --output swagger.json /app/EmployeeProject.dll v1
 
 FROM build AS publish
 RUN dotnet publish "EmployeeProject.csproj" -c Release -o /app --no-restore
