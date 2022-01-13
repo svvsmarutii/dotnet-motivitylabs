@@ -16,7 +16,7 @@ WORKDIR "/src/EmployeeProject"
 RUN dotnet build "EmployeeProject.csproj" -c Release -o /app
 RUN dotnet new tool-manifest
 RUN pwd \
-    && dotnet tool install --global --version 6.2.2 Swashbuckle.AspNetCore.Cli \
+    && dotnet tool install --local --version 6.2.2 Swashbuckle.AspNetCore.Cli \
     && find / -name dotnet-tools.json \
     && cat /src/EmployeeProject/.config/dotnet-tools.json \
     && export PATH="$PATH:/root/.dotnet/tools" \
@@ -24,7 +24,7 @@ RUN pwd \
     && chmod +x /root/.dotnet/tools/swagger \
     && echo $PATH
     
-RUN dotnet tool run dotnet-swagger tofile --output swagger.json bin/Debug/netcoreapp3.1/EmployeeProject.dll v1
+RUN dotnet tool run swagger tofile --output swagger.json bin/Debug/netcoreapp3.1/EmployeeProject.dll v1
 
 FROM build AS publish
 RUN dotnet publish "EmployeeProject.csproj" -c Release -o /app --no-restore
