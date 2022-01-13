@@ -21,8 +21,7 @@ RUN pwd \
     && export PATH="$PATH:/root/.dotnet/tools" \
     && ls -l /root/.dotnet/tools \
     && chmod +x /root/.dotnet/tools/swagger \
-    && echo $PATH \
-    && swagger --help
+    && echo $PATH
     
 RUN dotnet tool run swagger tofile --output swagger.json TAskProject.dll v1
 
