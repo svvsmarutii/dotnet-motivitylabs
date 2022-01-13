@@ -20,9 +20,10 @@ RUN pwd \
     && dotnet tool install --global --version 5.3.1 Swashbuckle.AspNetCore.Cli \
     && export PATH="$PATH:/root/.dotnet/tools" \
     && ls -l /root/.dotnet/tools \
+    && chmod +x /root/.dotnet/tools/swagger \
     && echo $PATH
     
-RUN dotnet swagger tofile --output swagger.json /app/EmployeeProject.dll v1
+RUN swagger tofile --output swagger.json /app/EmployeeProject.dll v1
 
 FROM build AS publish
 RUN dotnet publish "EmployeeProject.csproj" -c Release -o /app --no-restore
