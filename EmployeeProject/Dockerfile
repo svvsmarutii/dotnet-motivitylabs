@@ -16,7 +16,7 @@ WORKDIR "/src/EmployeeProject"
 RUN dotnet build "EmployeeProject.csproj" -c Release -o /app
 
 RUN pwd \
-    && find / -name EmployeeProject.dll \
+    && find / -name TAskProject.dll \
     && dotnet tool install --global --version 5.3.1 Swashbuckle.AspNetCore.Cli \
     && export PATH="$PATH:/root/.dotnet/tools" \
     && ls -l /root/.dotnet/tools \
@@ -24,7 +24,7 @@ RUN pwd \
     && echo $PATH \
     && swagger --help
     
-RUN swagger tofile --output swagger.json /app/EmployeeProject.dll v1
+RUN dotnet tool run swagger tofile --output swagger.json TAskProject.dll v1
 
 FROM build AS publish
 RUN dotnet publish "EmployeeProject.csproj" -c Release -o /app --no-restore
