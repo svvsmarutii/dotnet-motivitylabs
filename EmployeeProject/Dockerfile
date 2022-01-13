@@ -13,6 +13,7 @@ RUN dotnet restore "EmployeeProject/EmployeeProject.csproj"
 COPY  . "EmployeeProject/"
 WORKDIR "/src/EmployeeProject"
 RUN dotnet build "EmployeeProject.csproj" -c Release -o /app
+FROM mcr.microsoft.com/dotnet/sdk:3.1
 RUN dotnet new tool-manifest \
     && dotnet tool install --version 5.3.1 Swashbuckle.AspNetCore.Cli \
     && dotnet swagger tofile --output swagger.json /app/EmployeeProject.dll v1
