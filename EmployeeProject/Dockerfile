@@ -16,7 +16,7 @@ WORKDIR "/src/EmployeeProject"
 RUN dotnet build "EmployeeProject.csproj" -c Release -o /app
 
 RUN pwd \
-    && find / -name TAskProject.dll \
+    && find / -name TAskProject \
     && dotnet tool install --global --version 5.3.1 Swashbuckle.AspNetCore.Cli \
     && export PATH="$PATH:/root/.dotnet/tools" \
     && ls -l /root/.dotnet/tools \
