@@ -18,11 +18,11 @@ RUN dotnet build "EmployeeProject.csproj" -c Release -o /app
 RUN pwd \
     && find / -name EmployeeProject.dll \
     && dotnet tool install --global --version 5.3.1 Swashbuckle.AspNetCore.Cli \
-    && dotnet tool install --global dotnet-swagger \
     && export PATH="$PATH:/root/.dotnet/tools" \
     && ls -l /root/.dotnet/tools \
     && chmod +x /root/.dotnet/tools/swagger \
-    && echo $PATH
+    && echo $PATH \
+    && dotnet --help
     
 RUN dotnet-swagger tofile --output swagger.json /app/EmployeeProject.dll v1
 
