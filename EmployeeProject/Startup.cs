@@ -107,7 +107,7 @@ namespace EmployeeProject
             loggerFactory.AddFile("Logs/mylog-{Date}.txt");
             if (env.IsDevelopment())
             {
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EmployeeProject v1"));
                 app.UseDeveloperExceptionPage();
             }
             app.UseSwagger();
