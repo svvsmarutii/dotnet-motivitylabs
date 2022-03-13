@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ml-hhg-demo.fullname" . }}
+  labels:
+    {{- include "ml-hhg-demo.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      NodePort: {{ .Values.service.NodePort }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "ml-hhg-demo.selectorLabels" . | nindent 4 }}
