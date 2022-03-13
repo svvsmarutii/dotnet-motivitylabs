@@ -14,3 +14,5 @@ spec:
       name: http
   selector:
     {{- include "ml-hhg-demo.selectorLabels" . | nindent 4 }}
+  imagePullSecrets:
+  - name: nexuscred
