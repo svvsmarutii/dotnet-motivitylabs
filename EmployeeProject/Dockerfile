@@ -22,6 +22,35 @@ RUN pwd \
     
 RUN dotnet tool run swagger tofile --output swagger.json bin/Debug/netcoreapp3.1/EmployeeProject.dll v1
 
+FROM build AS sonar-yes
+RUN dotnet tool install -g dotnet-sonarscanner && dotnet tool install -g dotnet-reportgenerator-globaltool
+ENV PATH "${PATH}:/root/.dotnet/tools"
+COPY --from=build /src/EmployeeProject/ /src/EmployeeProject
+WORKDIR /src/EmployeeProject
+
+# initialize the dotnet specific scanner
+RUN dotnet sonarscanner begin \
+	/k:testimplementation \
+    /name:testimplementation \
+    /d:sonar.host.url=http://3.109.121.132:9000/ \
+    /d:sonar.branch.name=dindlocaldb \
+	/d:sonar.coverageReportPaths="coverage/SonarQube.xml"
+
+## Run dotnet test setting the output on the /coverage folder
+#RUN dotnet test --filter "DisplayName!~TextCompressorTests" --collect:"XPlat Code Coverage" --results-directory ./coverage
+RUN dotnet test --collect:"XPlat Code Coverage" --results-directory ./coverage ; exit 0
+
+## Create the code coverage file in sonarqube format using the cobertura file generated from the dotnet test command
+RUN reportgenerator "-reports:./coverage/*/coverage.cobertura.xml" "-targetdir:coverage" "-reporttypes:SonarQube"
+
+## Stop scanner
+RUN dotnet sonarscanner end
+
+FROM build AS sonar-no
+COPY --from=build /src/EmployeeProject/ /src/EmployeeProject
+
+FROM sonar-${boolvalue} as build
+
 FROM build AS publish
 RUN dotnet publish "EmployeeProject.csproj" -c Release -o /app --no-restore
 
