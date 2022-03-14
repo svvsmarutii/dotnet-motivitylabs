@@ -27,9 +27,9 @@ RUN if [ "$boolvalue" = "Yes" ] ; then dotnet tool install -g dotnet-sonarscanne
     && export PATH="${PATH}:/root/.dotnet/tools" \
     && dotnet sonarscanner begin \
 	/k:testimplementation \
-    /name:testimplementation \
-    /d:sonar.host.url=http://3.109.121.132:9000/ \
-    /d:sonar.branch.name=dindlocaldb \
+        /name:EmployeeProject \
+        /d:sonar.host.url=http://3.109.121.132:9000/ \
+        /d:sonar.branch.name=dindlocaldb \
 	/d:sonar.coverageReportPaths="coverage/SonarQube.xml" \
     && dotnet test --collect:"XPlat Code Coverage" --results-directory ./coverage ; exit 0 \
     && reportgenerator "-reports:./coverage/*/coverage.cobertura.xml" "-targetdir:coverage" "-reporttypes:SonarQube" ; exit 0 \
