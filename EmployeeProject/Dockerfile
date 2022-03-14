@@ -13,6 +13,7 @@ COPY ["EmployeeProject.csproj", "EmployeeProject/"]
 ARG boolvalue=no
 RUN dotnet restore "EmployeeProject/EmployeeProject.csproj"
 COPY  . "EmployeeProject/"
+COPY ../TestEmployeeProject "TestEmployeeProject/" 
 WORKDIR "/src/EmployeeProject"
 RUN dotnet build "EmployeeProject.csproj" -c Release -o /app
 RUN dotnet new tool-manifest
