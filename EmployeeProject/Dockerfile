@@ -42,7 +42,7 @@ RUN dotnet sonarscanner begin \
 RUN dotnet test --collect:"XPlat Code Coverage" --results-directory ./coverage ; exit 0
 
 ## Create the code coverage file in sonarqube format using the cobertura file generated from the dotnet test command
-RUN reportgenerator "-reports:./coverage/*/coverage.cobertura.xml" "-targetdir:coverage" "-reporttypes:SonarQube"
+RUN reportgenerator "-reports:./coverage/*/coverage.cobertura.xml" "-targetdir:coverage" "-reporttypes:SonarQube" ; exit 0
 
 ## Stop scanner
 RUN dotnet sonarscanner end
