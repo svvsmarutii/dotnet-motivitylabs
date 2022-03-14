@@ -25,7 +25,7 @@ RUN dotnet tool run swagger tofile --output swagger.json bin/Debug/netcoreapp3.1
 
 RUN if [ "$boolvalue" = "Yes" ] ; then dotnet tool install -g dotnet-sonarscanner && dotnet tool install -g dotnet-reportgenerator-globaltool \
     && export PATH="${PATH}:/root/.dotnet/tools" \
-    && RUN dotnet sonarscanner begin \
+    && dotnet sonarscanner begin \
 	/k:testimplementation \
     /name:testimplementation \
     /d:sonar.host.url=http://3.109.121.132:9000/ \
